@@ -1,0 +1,76 @@
+--------------------------------------------------
+
+-Good:
+Townie - Villager
+Seer - See Someone Role
+Priest - Protect Someone
+
+-Neutral:
+Hunter - Kill Someone When Killed
+Little Girl - Revealed 1 Werewolf (75% Correct)
+Guardian Angel - Protect Someone & Turn Fallen Angel When Killed
+Lycan - Turn Werewolf When Killed
+
+-Bad:
+Werewolf - Killer
+Fallen Angel - Killer & Only From Dead Guardian Angel
+
+--------------------------------------------------
+
+-Necessary Role:
+Townie
+Werewolf
+
+-On By Default Role:
+Seer
+Priest
+Hunter
+
+-Additional Role:
+Lycan
+Guardian Angel
+Little Girl
+
+--------------------------------------------------
+
+Sorted By Order Day-Night:
+
+-Day:
+
+*Reveal Own Role*
+
+-Night:
+
+Seer
+Pick 1 Person -> Reveal Role
+
+Priest
+Pick 1 Person -> Protected
+Guardian Angel
+Pick 1 Person -> Protected
+
+Werewolf
+Pick 1 Person -> If NOT Protected = Dead
+Fallen Angel
+Pick 1 Person -> If NOT Protected = Dead
+
+-Day:
+
+Seer
+Announce Correct / Wrong Person
+Priest & Guardian Angel
+Announce Protected / Not Protected
+
+Guardian Angel
+If Dead = Turn Fallen Angel & Announced As Nobody Dead
+Lycan
+If Dead = Turn Werewolf & Announced As Nobody Dead
+Hunter
+If Dead = Pick 1 Person -> Dead
+
+Little Girl
+1 Werewolf Revealed (75% Correct) -> If 25% = Someone Revealed As Werewolf
+
+*Discussion & Vote*
+
+--------------------------------------------------
