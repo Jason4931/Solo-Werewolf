@@ -129,7 +129,13 @@ function day(playerRoles, manyPlayers) {
         voting(playerRoles, manyPlayers, votes);
       });
     } else {
-      voting(playerRoles, manyPlayers, null);
+      let votes = {};
+      for (let i = 0; i < manyPlayers; i++) {
+        if (playerRoles[i].status == "alive") {
+          votes[i + 1] = 0;
+        }
+      }
+      voting(playerRoles, manyPlayers, votes);
     }
   } else {
     console.log("No players left alive...");
