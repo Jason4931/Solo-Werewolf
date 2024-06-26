@@ -2,8 +2,15 @@ let text = document.getElementById("text");
 let input = document.getElementById("input");
 let start = document.getElementById("start");
 let br = document.getElementById("br");
+let gameOver = false;
+function removeEventListenerFromElement(element) {
+  let newElement = element.cloneNode(true);
+  element.parentNode.replaceChild(newElement, element);
+  return newElement;
+}
 start.addEventListener("click", function () {
   //refresh buttons
+  gameOver = false;
   br.classList.add('hidden');
   input.classList.remove('hidden');
   let button = document.querySelectorAll('button');
@@ -16,7 +23,7 @@ start.addEventListener("click", function () {
   button.addEventListener("click", manyPlayers);
 });
 function manyPlayers() {
-  text.innerHTML += `manyPlayers`;
+  // text.innerHTML += `manyPlayers`;
   let button = document.getElementById("manyPlayers");
   button.classList.add('hidden');
   let manyPlayers = input.value;
@@ -27,6 +34,7 @@ function manyPlayers() {
     text.innerHTML += `<br><font color="darkred">Please enter at least 4 players</font>`;
     start.classList.remove('hidden');
     br.classList.remove('hidden');
+    gameOver = true;
     return;
   } else {
     let werewolves = Math.floor(manyPlayers / 3);
@@ -53,14 +61,14 @@ function manyPlayers() {
       let werewolves = playerRoles.filter(player => player.role == "Werewolf" && player.status == "alive");
       text.innerHTML += `<br>The werewolves are: Player ${werewolves.map(player => `${playerRoles.indexOf(player) + 1}`).join(', ')}`;
     }
-
     //start cycle
-    console.log('start');
+    // text.innerHTML += `start`;
     gameLoop(playerRoles, manyPlayers);
   }
 }
 function gameLoop(playerRoles, manyPlayers) {
-  text.innerHTML += `gameLoop`;
+  if (gameOver) { return; }
+  // text.innerHTML += `gameLoop`;
   //night
   text.innerHTML += `<br><br><i>Night comes and everybody sleep...</i>`;
   //killing one townie
@@ -69,6 +77,7 @@ function gameLoop(playerRoles, manyPlayers) {
       text.innerHTML += `<br>Who do you kill (1-${manyPlayers}): `;
       let button = document.getElementById("killedPlayer");
       button.classList.remove('hidden');
+      button = removeEventListenerFromElement(button);
       button.addEventListener("click", function () { killedPlayer(playerRoles, manyPlayers); });
     } else {
       let townies = [];
@@ -104,7 +113,8 @@ function gameLoop(playerRoles, manyPlayers) {
   }
 }
 function killedPlayer(playerRoles, manyPlayers) {
-  text.innerHTML += `killedPlayer`;
+  if (gameOver) { return; }
+  // text.innerHTML += `killedPlayer`;
   let button = document.getElementById("killedPlayer");
   button.classList.add('hidden');
   let killedPlayer = input.value;
@@ -116,7 +126,9 @@ function killedPlayer(playerRoles, manyPlayers) {
   day(playerRoles, manyPlayers);
 }
 function day(playerRoles, manyPlayers) {
-  text.innerHTML += `day`;
+  if (gameOver) { return; }
+  // text.innerHTML += `<br>${JSON.stringify(playerRoles)}`;
+  // text.innerHTML += `day`;
   //end game
   let aliveWerewolves = playerRoles.filter(player => player.role == "Werewolf" && player.status == "alive").length;
   let aliveTownies = playerRoles.filter(player => player.role == "Townie" && player.status == "alive").length;
@@ -124,17 +136,21 @@ function day(playerRoles, manyPlayers) {
     text.innerHTML += `<br><h3 style="color: darkgreen">Werewolves win!</h3>`;
     start.classList.remove('hidden');
     br.classList.remove('hidden');
+    gameOver = true;
     return;
   }
   //day
   text.innerHTML += `<br><br><i>Day comes and everybody wake up...</i>`;
+  // text.innerHTML += `<br>${JSON.stringify(playerRoles)}`;
   //voting time
-  let alivePlayers = playerRoles.filter(player => player.status === "alive");
+  let alivePlayers = playerRoles.filter(player => player.status == "alive");
   if (alivePlayers.length > 0) {
     if (playerRoles[0].status == "alive") {
       text.innerHTML += `<br>Who do you vote (1-${manyPlayers}): `;
       let button = document.getElementById("votedPlayer");
       button.classList.remove('hidden');
+      // text.innerHTML += `<br>${JSON.stringify(playerRoles)}`;
+      button = removeEventListenerFromElement(button);
       button.addEventListener("click", function () { votedPlayer(playerRoles, manyPlayers); });
     } else {
       let votes = {};
@@ -149,11 +165,14 @@ function day(playerRoles, manyPlayers) {
     text.innerHTML += `<br>No players left alive...`;
     start.classList.remove('hidden');
     br.classList.remove('hidden');
+    gameOver = true;
     return;
   }
 }
 function votedPlayer(playerRoles, manyPlayers) {
-  text.innerHTML += `votedPlayer`;
+  if (gameOver) { return; }
+  // text.innerHTML += `<br>${JSON.stringify(playerRoles)}`;
+  // text.innerHTML += `votedPlayer`;
   let button = document.getElementById("votedPlayer");
   button.classList.add('hidden');
   let votedPlayer = input.value;
@@ -170,18 +189,23 @@ function votedPlayer(playerRoles, manyPlayers) {
   voting(playerRoles, manyPlayers, votes);
 }
 function voting(playerRoles, manyPlayers, votes) {
-  text.innerHTML += `voting`;
+  if (gameOver) { return; }
+  // text.innerHTML += `voting`;
   //everybody votes at random
   for (let i = 0; i < manyPlayers; i++) {
+    // text.innerHTML += `<br>${i} -> ${i+1} ${playerRoles[i].status}`;
     if (playerRoles[i].status == "alive" && i != 0) {
       let vote = Math.floor(Math.random() * manyPlayers);
       while (playerRoles[vote].status == "dead" || vote == i) {
         vote = Math.floor(Math.random() * manyPlayers);
       }
+      // text.innerHTML += `<br>Vote ${vote} ${i}`;
+      // text.innerHTML += `<br>Player ${i+1} voted ${vote+1}`;
       vote++;
       votes[vote]++;
     }
   }
+  // text.innerHTML += `<br>${JSON.stringify(votes)}`;
   let maxVotes = 0;
   let maxVotedPlayers = [];
   for (let player in votes) {
@@ -211,11 +235,13 @@ function voting(playerRoles, manyPlayers, votes) {
     text.innerHTML += `<br><h3 style="color: darkgreen">Werewolves win!</h3>`;
     start.classList.remove('hidden');
     br.classList.remove('hidden');
+    gameOver = true;
     return;
   } else if (aliveWerewolves == 0) {
     text.innerHTML += `<br><h3 style="color: darkgreen">Townies win!</h3>`;
     start.classList.remove('hidden');
     br.classList.remove('hidden');
+    gameOver = true;
     return;
   } else {
     gameLoop(playerRoles, manyPlayers);
