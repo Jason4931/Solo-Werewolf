@@ -16,6 +16,7 @@ start.addEventListener("click", function () {
   button.addEventListener("click", manyPlayers);
 });
 function manyPlayers() {
+  text.innerHTML += `manyPlayers`;
   let button = document.getElementById("manyPlayers");
   button.classList.add('hidden');
   let manyPlayers = input.value;
@@ -54,14 +55,14 @@ function manyPlayers() {
     }
 
     //start cycle
+    console.log('start');
     gameLoop(playerRoles, manyPlayers);
   }
 }
 function gameLoop(playerRoles, manyPlayers) {
-
+  text.innerHTML += `gameLoop`;
   //night
   text.innerHTML += `<br><br><i>Night comes and everybody sleep...</i>`;
-  
   //killing one townie
   if (playerRoles[0].role == "Werewolf") {
     if (playerRoles[0].status == "alive") {
@@ -103,6 +104,7 @@ function gameLoop(playerRoles, manyPlayers) {
   }
 }
 function killedPlayer(playerRoles, manyPlayers) {
+  text.innerHTML += `killedPlayer`;
   let button = document.getElementById("killedPlayer");
   button.classList.add('hidden');
   let killedPlayer = input.value;
@@ -114,6 +116,7 @@ function killedPlayer(playerRoles, manyPlayers) {
   day(playerRoles, manyPlayers);
 }
 function day(playerRoles, manyPlayers) {
+  text.innerHTML += `day`;
   //end game
   let aliveWerewolves = playerRoles.filter(player => player.role == "Werewolf" && player.status == "alive").length;
   let aliveTownies = playerRoles.filter(player => player.role == "Townie" && player.status == "alive").length;
@@ -125,7 +128,6 @@ function day(playerRoles, manyPlayers) {
   }
   //day
   text.innerHTML += `<br><br><i>Day comes and everybody wake up...</i>`;
-  
   //voting time
   let alivePlayers = playerRoles.filter(player => player.status === "alive");
   if (alivePlayers.length > 0) {
@@ -151,6 +153,7 @@ function day(playerRoles, manyPlayers) {
   }
 }
 function votedPlayer(playerRoles, manyPlayers) {
+  text.innerHTML += `votedPlayer`;
   let button = document.getElementById("votedPlayer");
   button.classList.add('hidden');
   let votedPlayer = input.value;
@@ -167,6 +170,7 @@ function votedPlayer(playerRoles, manyPlayers) {
   voting(playerRoles, manyPlayers, votes);
 }
 function voting(playerRoles, manyPlayers, votes) {
+  text.innerHTML += `voting`;
   //everybody votes at random
   for (let i = 0; i < manyPlayers; i++) {
     if (playerRoles[i].status == "alive" && i != 0) {
