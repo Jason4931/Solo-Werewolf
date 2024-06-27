@@ -1,10 +1,5 @@
 let text = document.getElementById("text");
 let input = document.getElementById("input");
-let language = document.getElementById("language");
-let selectedLang = language.value;
-language.addEventListener("change", function () {
-  selectedLang = language.value;
-});
 let rules = document.getElementById("rules");
 let roles = document.getElementById("roles");
 roles.addEventListener("click", function () {
@@ -18,6 +13,21 @@ roles.addEventListener("click", function () {
 let start = document.getElementById("start");
 let br = document.getElementById("br");
 let gameOver = false;
+let language = document.getElementById("language");
+let selectedLang = language.value;
+language.addEventListener("change", function () {
+  selectedLang = language.value;
+  if (selectedLang == "en") {
+    roles.innerHTML = "Change Roles";
+    start.innerHTML = "Start Game";
+    rules.innerHTML = "Rules";
+  } else {
+    roles.innerHTML = "Ubah Role";
+    start.innerHTML = "Mulai Permainan";
+    rules.innerHTML = "Aturan";
+  }
+});
+
 function removeEventListenerFromElement(element) {
   let newElement = element.cloneNode(true);
   element.parentNode.replaceChild(newElement, element);
