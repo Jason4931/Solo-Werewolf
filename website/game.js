@@ -75,6 +75,7 @@ function manyPlayers() {
     roles.classList.remove('hidden');
     start.classList.remove('hidden');
     br.classList.remove('hidden');
+    input.classList.add('hidden');
     gameOver = true;
     return;
   } else {
@@ -220,6 +221,7 @@ function day(playerRoles, manyPlayers) {
     roles.classList.remove('hidden');
     start.classList.remove('hidden');
     br.classList.remove('hidden');
+    input.classList.add('hidden');
     gameOver = true;
     return;
   }
@@ -264,6 +266,7 @@ function day(playerRoles, manyPlayers) {
     roles.classList.remove('hidden');
     start.classList.remove('hidden');
     br.classList.remove('hidden');
+    input.classList.add('hidden');
     gameOver = true;
     return;
   }
@@ -353,6 +356,7 @@ function voting(playerRoles, manyPlayers, votes) {
     roles.classList.remove('hidden');
     start.classList.remove('hidden');
     br.classList.remove('hidden');
+    input.classList.add('hidden');
     gameOver = true;
     return;
   } else if (aliveWerewolves == 0) {
@@ -366,6 +370,7 @@ function voting(playerRoles, manyPlayers, votes) {
     roles.classList.remove('hidden');
     start.classList.remove('hidden');
     br.classList.remove('hidden');
+    input.classList.add('hidden');
     gameOver = true;
     return;
   } else {

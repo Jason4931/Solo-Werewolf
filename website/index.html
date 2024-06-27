@@ -8,9 +8,23 @@
         .hidden {
             display: none;
         }
+        .up {
+            position: fixed; /* Keeps the sidebar fixed to the viewport */
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            color: black;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
+    <div class="up">
+        <a href="#start">
+            <img src="./up.svg" alt="scroll up" style="width: 100%">
+        </a>
+    </div>
     <button id="rules" style="float: right"><a href="./rules.html" style="text-decoration: none; color: black">Rules</a></button>
     <select id="language" style="float: right; margin-right: 10px">
         <option value="en">English</option>
@@ -75,11 +89,11 @@
         </tr>
     </table>
     <br id="br">
-    <input type="number" id="input" style="margin-top: 8px" class="hidden">
+    <p id="text"></p>
+    <input type="number" id="input" class="hidden">
     <button id="manyPlayers" class="hidden">Submit</button>
     <button id="killedPlayer" class="hidden">Submit</button>
     <button id="votedPlayer" class="hidden">Submit</button>
-    <br><p id="text"></p>
     <script src="./game.js"></script>
 </body>
 </html>
