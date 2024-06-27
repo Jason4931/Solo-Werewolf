@@ -11,11 +11,70 @@
     </style>
 </head>
 <body>
-    <select id="language">
+    <button id="rules" style="float: right"><a href="./rules.html" style="text-decoration: none; color: black">Rules</a></button>
+    <select id="language" style="float: right; margin-right: 10px">
         <option value="en">English</option>
         <option value="id">Indonesia</option>
     </select>
-    <button id="start">Start Game</button><br id="br">
+    <button id="roles">Change Roles</button>
+    <button id="start">Start Game</button>
+    <table id="selectRole" class="hidden">
+        <tr>
+            <td>
+                <input type="checkbox" name="Townie" checked disabled>
+                <label for="Townie">Townie</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="Werewolf" checked disabled>
+                <label for="Werewolf">Werewolf</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="Seer" disabled>
+                <label for="Seer">Seer</label>
+            </td>
+            <td><i>(Not Done Yet)</i></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="Priest" disabled>
+                <label for="Priest">Priest</label>
+            </td>
+            <td><i>(Not Done Yet)</i></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="Hunter" disabled>
+                <label for="Hunter">Hunter</label>
+            </td>
+            <td><i>(Not Done Yet)</i></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="Lycan" disabled>
+                <label for="Lycan">Lycan</label>
+            </td>
+            <td><i>(Not Done Yet)</i></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="Guardian Angel" disabled>
+                <label for="Guardian Angel">Guardian Angel</label>
+            </td>
+            <td><i>(Not Done Yet)</i></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="Little Girl" disabled>
+                <label for="Little Girl">Little Girl</label>
+            </td>
+            <td><i>(Not Done Yet)</i></td>
+        </tr>
+    </table>
+    <br id="br">
     <input type="number" id="input" style="margin-top: 8px" class="hidden">
     <button id="manyPlayers" class="hidden">Submit</button>
     <button id="killedPlayer" class="hidden">Submit</button>

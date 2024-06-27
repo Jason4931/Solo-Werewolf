@@ -5,6 +5,16 @@ let selectedLang = language.value;
 language.addEventListener("change", function () {
   selectedLang = language.value;
 });
+let rules = document.getElementById("rules");
+let roles = document.getElementById("roles");
+roles.addEventListener("click", function () {
+  let selectRole = document.getElementById("selectRole");
+  if(selectRole.classList.contains('hidden')) {
+    selectRole.classList.remove('hidden'); 
+  } else {
+    selectRole.classList.add('hidden');
+  }
+});
 let start = document.getElementById("start");
 let br = document.getElementById("br");
 let gameOver = false;
@@ -21,6 +31,9 @@ start.addEventListener("click", function () {
   let button = document.querySelectorAll('button');
   button.forEach(button => button.classList.add('hidden'));
   language.classList.add('hidden');
+  rules.classList.add('hidden');
+  roles.classList.add('hidden');
+  selectRole.classList.add('hidden');
   button = document.getElementById("manyPlayers");
   button.classList.remove('hidden');
   //start game
@@ -48,6 +61,8 @@ function manyPlayers() {
       text.innerHTML += `<br><font color="darkred">Masukkan minimal 4 orang</font>`;
     }
     language.classList.remove('hidden');
+    rules.classList.remove('hidden');
+    roles.classList.remove('hidden');
     start.classList.remove('hidden');
     br.classList.remove('hidden');
     gameOver = true;
@@ -191,6 +206,8 @@ function day(playerRoles, manyPlayers) {
       text.innerHTML += `<br><h3 style="color: darkgreen">Werewolf menang!</h3>`;
     }
     language.classList.remove('hidden');
+    rules.classList.remove('hidden');
+    roles.classList.remove('hidden');
     start.classList.remove('hidden');
     br.classList.remove('hidden');
     gameOver = true;
@@ -233,6 +250,8 @@ function day(playerRoles, manyPlayers) {
       text.innerHTML += `<br>Tidak ada player yang hidup...`;
     }
     language.classList.remove('hidden');
+    rules.classList.remove('hidden');
+    roles.classList.remove('hidden');
     start.classList.remove('hidden');
     br.classList.remove('hidden');
     gameOver = true;
@@ -320,6 +339,8 @@ function voting(playerRoles, manyPlayers, votes) {
       text.innerHTML += `<br><h3 style="color: darkgreen">Werewolf menang!</h3>`;
     }
     language.classList.remove('hidden');
+    rules.classList.remove('hidden');
+    roles.classList.remove('hidden');
     start.classList.remove('hidden');
     br.classList.remove('hidden');
     gameOver = true;
@@ -331,6 +352,8 @@ function voting(playerRoles, manyPlayers, votes) {
       text.innerHTML += `<br><h3 style="color: darkgreen">Townie menang!</h3>`;
     }
     language.classList.remove('hidden');
+    rules.classList.remove('hidden');
+    roles.classList.remove('hidden');
     start.classList.remove('hidden');
     br.classList.remove('hidden');
     gameOver = true;
