@@ -1,3 +1,12 @@
+const scrollAnchor = document.getElementById('scroll');
+const upLink = document.querySelector('.up a');
+upLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  scrollAnchor.scrollIntoView({
+    behavior: 'smooth'
+  });
+});
+
 let text = document.getElementById("text");
 let input = document.getElementById("input");
 let rules = document.getElementById("rules");
